@@ -1,0 +1,72 @@
+/* ScamLens Cybersecurity Design System Tokens */
+:root {
+  /* Dark Charcoal & Forest Green Theme (Default) */
+  --bg-primary: #101B17;
+  --bg-panel: #192923;
+  --bg-panel-translucent: rgba(25, 41, 35, 0.75);
+  --bg-card: rgba(25, 41, 35, 0.85);
+  --bg-input: #12211C;
+  --border-color: #315344;
+  --border-subtle: rgba(49, 83, 68, 0.5);
+  --border-glow: rgba(16, 185, 129, 0.3);
+
+  /* Brand Accents */
+  --emerald: #10B981;
+  --emerald-hover: #059669;
+  --emerald-glow: rgba(16, 185, 129, 0.25);
+  --lime: #C4F56A;
+  --lime-hover: #b2eb48;
+  --lime-glow: rgba(196, 245, 106, 0.3);
+
+  /* Typography */
+  --text-primary: #F5F7F2;
+  --text-secondary: #A6B5AA;
+  --text-muted: #738A79;
+  --text-dark: #101B17;
+
+  /* Indicators */
+  --risk-high: #EF4444;
+  --risk-high-bg: rgba(239, 68, 68, 0.15);
+  --risk-caution: #F59E0B;
+  --risk-caution-bg: rgba(245, 158, 11, 0.15);
+  --risk-safe: #10B981;
+  --risk-safe-bg: rgba(16, 185, 129, 0.15);
+
+  /* Shadows & Glass */
+  --shadow-panel: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px rgba(16, 185, 129, 0.15);
+  --glass-blur: blur(12px);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light Cyber Clean Alternative Theme */
+[data-theme="light"] {
+  --bg-primary: #F0F4F2;
+  --bg-panel: #FFFFFF;
+  --bg-panel-translucent: rgba(255, 255, 255, 0.85);
+  --bg-card: #FFFFFF;
+  --bg-input: #F7FAF8;
+  --border-color: #D1E0D7;
+  --border-subtle: rgba(209, 224, 215, 0.8);
+  --border-glow: rgba(16, 185, 129, 0.2);
+
+  --emerald: #059669;
+  --emerald-hover: #047857;
+  --emerald-glow: rgba(5, 150, 105, 0.15);
+  --lime: #84CC16;
+  --lime-hover: #65A30D;
+  --lime-glow: rgba(132, 204, 22, 0.2);
+
+  --text-primary: #101B17;
+  --text-secondary: #4A5B50;
+  --text-muted: #6B7C72;
+  --text-dark: #FFFFFF;
+
+  --shadow-panel: 0 10px 30px rgba(16, 27, 23, 0.08);
+  --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.1);
+}
