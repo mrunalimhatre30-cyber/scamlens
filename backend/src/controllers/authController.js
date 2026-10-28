@@ -144,3 +144,38 @@ export async function getMe(req, res, next) {
     next(err);
   }
 }
+
+export async function demoLogin(req, res, next) {
+  try {
+    const demoEmail = 'guest.demo@scamlens.local';
+    let users = await query('SELECT * FROM users WHERE email = ?', [demoEmail]);
+    let user;
+    if (users.length === 0) {
+      const hash = await bcrypt.hash('DemoPass123!', 10);
+      const resInsert = await query(
+        'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)',
+        ['Guest Explorer', demoEmail, hash]
+      );
+      user = { id: resInsert.insertId, name: 'Guest Explorer', email: demoEmail };
+    } else {
+      user = users[0];
+    }
+
+    req.session.userId = user.id;
+    req.session.userName = user.name;
+    req.session.userEmail = user.email;
+
+    return res.status(200).json({
+      success: true,
+      message: 'Demo guest access granted.',
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+

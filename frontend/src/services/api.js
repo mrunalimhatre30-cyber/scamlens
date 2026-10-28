@@ -68,6 +68,12 @@ export async function loginUser(email, password) {
   });
 }
 
+export async function demoLoginUser() {
+  return request('/auth/demo', {
+    method: 'POST'
+  });
+}
+
 export async function logoutUser() {
   return request('/auth/logout', {
     method: 'POST'
