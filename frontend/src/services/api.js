@@ -7,7 +7,13 @@
 import { analyzeMessage as localAnalyzeMessage, analyzeUrl as localAnalyzeUrl } from './clientAnalyzer';
 import { getQuizQuestions as localGetQuizQuestions, evaluateQuiz as localEvaluateQuiz } from './clientQuiz';
 
-const envBase = import.meta.env.VITE_API_BASE_URL;
+let envBase = import.meta.env.VITE_API_BASE_URL;
+if (envBase) {
+  envBase = envBase.trim().replace(/\/+$/, '');
+  if (!envBase.endsWith('/api')) {
+    envBase += '/api';
+  }
+}
 
 // Avoid Mixed Content error if running on HTTPS production without VITE_API_BASE_URL
 const isHttpsHost = typeof window !== 'undefined' && window.location.protocol === 'https:';
