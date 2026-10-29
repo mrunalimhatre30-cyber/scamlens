@@ -15,24 +15,28 @@ dotenv.config();
 
 const app = express();
 
+// Trust reverse proxies (Render, Vercel, Heroku) for secure cookies
+app.set('trust proxy', 1);
+
 // Security HTTP headers
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 
-// CORS configuration supporting credentials (cookies/sessions)
+// CORS configuration supporting credentials across Vercel & Render
 const allowedOrigins = [
   process.env.CLIENT_URL || 'http://localhost:5173',
   'http://localhost:3000',
-  'http://127.0.0.1:5173'
+  'http://127.0.0.1:5173',
+  'https://scamlens-eight.vercel.app'
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
+    if (!origin || allowedOrigins.indexOf(origin) !== -1 || /\.vercel\.app$/.test(origin)) {
+      callback(null, origin || true);
     } else {
-      callback(null, true); // Permissive for local dev testing
+      callback(null, origin || true);
     }
   },
   credentials: true,
@@ -54,8 +58,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: isProduction, // Set to true in HTTPS production
-    sameSite: isProduction ? 'strict' : 'lax',
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax', // Allows cross-site session between Vercel frontend and Render backend
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
 }));
